@@ -26,7 +26,7 @@ newsourceroot: https://github.com/inter6/inter6.github.io/new/master
 #########################################
 
 # Build settings
-markdown: kramdown
+# markdown: kramdown
 
 # highlight
 # highlighter: pygments
