@@ -11,6 +11,7 @@ categories: applescript
 ## repeat [number] times
 
 - Java
+
 ```java
 int sum = 0;
 for (int i = 0; i < 10; i++) {
@@ -20,6 +21,7 @@ return sum;
 ```
 
 - AppleScript
+
 ```applescript
 set sum to 0
 repeat 10 times
@@ -32,6 +34,7 @@ return sum
 ## repeat
 
 - Java
+
 ```java
 int sum = 0;
 while (true) {
@@ -44,6 +47,7 @@ return sum;
 ```
 
 - AppleScript
+
 ```applescript
 set sum to 0
 repeat
@@ -61,6 +65,7 @@ return sum
 ## repeat with [var] from [start] to [end] {by [inc]}
 
 - Java
+
 ```java
 int sum = 0;
 for (int i = 0; i < 10; i += 2) {
@@ -70,6 +75,7 @@ return sum;
 ```
 
 - AppleScript
+
 ```applescript
 set sum to 0
 repeat with i from 0 to 10 by 2
@@ -82,6 +88,7 @@ return sum
 ## repeat with [var] in [list]
 
 - Java
+
 ```java
 int sum = 0;
 for (int i : new int[] {1, 2, 3, 4, 5}) {
@@ -91,6 +98,7 @@ return sum
 ```
 
 - AppleScript
+
 ```applescript
 set sum to 0
 repeat with i in {1, 2, 3, 4, 5}
@@ -103,6 +111,7 @@ return sum
 ## repeat while [cond]
 
 - Java
+
 ```java
 int sum = 0;
 while (sum < 10) {
@@ -112,6 +121,7 @@ return sum
 ```
 
 - AppleScript
+
 ```applescript
 set sum to 0
 repeat while sum < 10
@@ -125,6 +135,7 @@ return sum
 ## repeat until [cond]
 
 - Java
+
 ```java
 int sum = 0;
 while (!(sum > 10)) {
@@ -134,6 +145,7 @@ return sum
 ```
 
 - AppleScript
+
 ```applescript
 set sum to 0
 repeat until sum > 10
