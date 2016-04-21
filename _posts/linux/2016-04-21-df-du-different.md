@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "df 용량과 du 용량이 다를 때"
-date: 2016-04-20
+date: 2016-04-21
 categories: linux
 ---
 
