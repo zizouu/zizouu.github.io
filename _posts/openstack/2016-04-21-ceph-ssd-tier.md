@@ -77,6 +77,7 @@ root@storage001:~# vi crush_map
 ```
 
 수정 전 Bucket과 Rule은 다음과 같다.
+
 ```
 # buckets
 host storage001 {
@@ -202,6 +203,7 @@ rule replicated_ruleset_ssd {
 ```
 
 수정한 CRUSH 맵을 업로드해준다.
+
 ```bash
 root@storage001:~# crushtool -c crush_map -o /tmp/crushmap
 root@storage001:~# ceph osd setcrushmap -i /tmp/crushmap
