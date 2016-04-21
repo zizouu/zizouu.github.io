@@ -16,11 +16,12 @@ categories: openstack
 이 글에서는 하나의 Ceph 클러스터에 SSD와 HDD 각각의 Pool를 생성하여 Cinder 백엔드로 물리는 것까지 설명한다.
 기본적으로 Ceph 클러스터가 준비되어있고 HDD OSD들과 Pool만이 존재하는 환경에서 시작하기로 한다.
 
+## 설정법
 
 ### SSD OSD 추가
 
 물리적으로 SSD들을 추가한다. 참고로 SSD를 데이터 용도로 사용할 경우, 별도의 저널링 디스크는 필요없다.
-장착 후, Ceph MON 노드에서 다음 명령어로 SSD들을 Ceph OSD로 만든다.
+장착 후, Ceph 노드에서 다음 명령어로 SSD들을 Ceph OSD로 만든다.
 
 ```ceph
 # 디스크 인식이 잘 안되면
@@ -234,6 +235,7 @@ ID  WEIGHT  TYPE NAME               UP/DOWN REWEIGHT PRIMARY-AFFINITY
 ```ceph
 root@storage001:~] ceph-deploy osd activate storage001:/dev/sdh1:/dev/sdh2
 root@storage001:~] ceph-deploy osd activate storage001:/dev/sdi1:/dev/sdi2
+
 root@storage001:~] ceph-deploy osd activate storage002:/dev/sdh1:/dev/sdh2
 root@storage001:~] ceph-deploy osd activate storage002:/dev/sdi1:/dev/sdi2
 ```
@@ -241,7 +243,7 @@ root@storage001:~] ceph-deploy osd activate storage002:/dev/sdi1:/dev/sdi2
 ### SSD 전용 Pool 생성 및 Rule 할당
 
 여기서는 ```volumes_ssd``` 이름의 Pool을 만들고 PG 개수를 128로 주었다.
-앞서 CRUSU 맵을 수정할 때 SSD ruleset 번호를 1로 지정하였기 때문에, 해당 Pool의 crush_ruleset 번호를 1로 준다.
+앞서 CRUSH 맵을 수정할 때 SSD ruleset 번호를 1로 지정하였기 때문에, 해당 Pool의 crush_ruleset 번호를 1로 준다.
 
 ```bash
 root@storage001:~] ceph osd pool create volumes_ssd 128 128
