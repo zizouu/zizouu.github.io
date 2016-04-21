@@ -24,19 +24,19 @@ categories: openstack
 
 ```ceph
 # 디스크 인식이 잘 안되면
-root@storage001:~# ls /sys/class/scsi_host/ | while read host ; do echo "- - -" > /sys/class/scsi_host/$host/scan ; done
+root@storage001:~] ls /sys/class/scsi_host/ | while read host ; do echo "- - -" > /sys/class/scsi_host/$host/scan ; done
 
-root@storage001:~# lsblk
+root@storage001:~] lsblk
 NAME               MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 ...
 sdh                  8:112  0    30G  0 disk
 sdi                  8:128  0    30G  0 disk
 
 # storage001 노드의 sdh와 sdi를 OSD로 만든다.
-root@storage001:~# ceph-deploy osd prepare storage001:/dev/sdh
-root@storage001:~# ceph-deploy osd prepare storage001:/dev/sdi
+root@storage001:~] ceph-deploy osd prepare storage001:/dev/sdh
+root@storage001:~] ceph-deploy osd prepare storage001:/dev/sdi
 
-root@storage001:~# lsblk
+root@storage001:~] lsblk
 NAME               MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 ...
 sdh                  8:112  0    30G  0 disk
@@ -47,10 +47,10 @@ sdi                  8:128  0    30G  0 disk
 └─sdi2               8:130  0     2G  0 part
 
 # storage002 노드 또한 sdh와 sdi를 OSD로 만든다.
-root@storage001:~# ceph-deploy osd prepare storage002:/dev/sdh
-root@storage001:~# ceph-deploy osd prepare storage002:/dev/sdi
+root@storage001:~] ceph-deploy osd prepare storage002:/dev/sdh
+root@storage001:~] ceph-deploy osd prepare storage002:/dev/sdi
 
-root@storage001:~# ceph osd tree
+root@storage001:~] ceph osd tree
 ID WEIGHT  TYPE NAME           UP/DOWN REWEIGHT PRIMARY-AFFINITY
 -1 0.41992 root default
 -2 0.20996     host storage002
@@ -71,9 +71,9 @@ ID WEIGHT  TYPE NAME           UP/DOWN REWEIGHT PRIMARY-AFFINITY
 
 ```bash
 # CRUSH 맵 다운로드
-root@storage001:~# ceph osd getcrushmap -o /tmp/crushmap
-root@storage001:~# crushtool -d /tmp/crushmap -o crush_map
-root@storage001:~# vi crush_map
+root@storage001:~] ceph osd getcrushmap -o /tmp/crushmap
+root@storage001:~] crushtool -d /tmp/crushmap -o crush_map
+root@storage001:~] vi crush_map
 ```
 
 수정 전 Bucket과 Rule은 다음과 같다.
@@ -205,9 +205,9 @@ rule replicated_ruleset_ssd {
 수정한 CRUSH 맵을 업로드해준다.
 
 ```bash
-root@storage001:~# crushtool -c crush_map -o /tmp/crushmap
-root@storage001:~# ceph osd setcrushmap -i /tmp/crushmap
-root@storage001:~# ceph osd tree
+root@storage001:~] crushtool -c crush_map -o /tmp/crushmap
+root@storage001:~] ceph osd setcrushmap -i /tmp/crushmap
+root@storage001:~] ceph osd tree
 ID  WEIGHT  TYPE NAME               UP/DOWN REWEIGHT PRIMARY-AFFINITY
 -10 0.12000 root ssd
 -11 0.06000     host storage001_ssd
@@ -232,10 +232,10 @@ ID  WEIGHT  TYPE NAME               UP/DOWN REWEIGHT PRIMARY-AFFINITY
 아직 추가한 OSD들을 activate 하지 않았는데, 다음과 같이 activate 해준다.
 
 ```ceph
-root@storage001:~# ceph-deploy osd activate storage001:/dev/sdh1:/dev/sdh2
-root@storage001:~# ceph-deploy osd activate storage001:/dev/sdi1:/dev/sdi2
-root@storage001:~# ceph-deploy osd activate storage002:/dev/sdh1:/dev/sdh2
-root@storage001:~# ceph-deploy osd activate storage002:/dev/sdi1:/dev/sdi2
+root@storage001:~] ceph-deploy osd activate storage001:/dev/sdh1:/dev/sdh2
+root@storage001:~] ceph-deploy osd activate storage001:/dev/sdi1:/dev/sdi2
+root@storage001:~] ceph-deploy osd activate storage002:/dev/sdh1:/dev/sdh2
+root@storage001:~] ceph-deploy osd activate storage002:/dev/sdi1:/dev/sdi2
 ```
 
 ### SSD 전용 Pool 생성 및 Rule 할당
@@ -244,10 +244,10 @@ root@storage001:~# ceph-deploy osd activate storage002:/dev/sdi1:/dev/sdi2
 앞서 CRUSU 맵을 수정할 때 SSD ruleset 번호를 1로 지정하였기 때문에, 해당 Pool의 crush_ruleset 번호를 1로 준다.
 
 ```bash
-root@storage001:~# ceph osd pool create volumes_ssd 128 128
-root@storage001:~# ceph osd pool set volumes_ssd crush_ruleset 1
+root@storage001:~] ceph osd pool create volumes_ssd 128 128
+root@storage001:~] ceph osd pool set volumes_ssd crush_ruleset 1
 
-root@storage001:~# ceph osd lspools
+root@storage001:~] ceph osd lspools
 ...
 2 volumes,	# 기존 default Rule을 사용하는 Pool
 13 volumes_ssd,	# 생성한 ssd Rule을 사용하는 Pool
@@ -260,7 +260,7 @@ root@storage001:~# ceph osd lspools
 이 후 해당 볼륨 타입으로 볼륨을 생성한 뒤 ```ceph df```로 실제 용량을 먹어들어가는지 확인한다.
 
 ```bash
-root@controller001:~# ceph df
+root@controller001:~] ceph df
 GLOBAL:
     SIZE     AVAIL     RAW USED     %RAW USED
     408G      407G         706M          0.17
