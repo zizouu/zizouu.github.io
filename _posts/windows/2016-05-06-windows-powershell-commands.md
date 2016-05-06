@@ -8,7 +8,7 @@ categories: windows
 * content
 {:toc}
 
-###Alias 설정
+### Alias 설정
 
 ```powershell
 Set-Alias ll ls
@@ -60,6 +60,7 @@ Get-History
 ```
 
 - 내보내기
+
 ```powershell
 Get-History | Export-Clixml history.xml
 ```
