@@ -8,7 +8,7 @@ categories: openstack
 * content
 {:toc}
 
-## Fuel 재설정
+### Fuel 재설정
 
 ```bash
 bootstrap_admin_node.sh
