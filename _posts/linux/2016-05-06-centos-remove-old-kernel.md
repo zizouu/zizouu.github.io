@@ -11,7 +11,7 @@ categories: linux
 ## 현재 설치되어있는 커널 조회
 
 ```bash
-[root@localhost boot]# rpm -q kernel
+[root@localhost ~] rpm -q kernel
 kernel-3.10.0-229.14.1.el7.x86_64
 kernel-3.10.0-229.20.1.el7.x86_64
 kernel-3.10.0-327.3.1.el7.x86_64
@@ -23,8 +23,8 @@ kernel-3.10.0-327.13.1.el7.x86_64
 
 ```bash
 # yum-utils 설치
-[root@localhost boot]# yum install yum-utils
+[root@localhost ~] yum install yum-utils
 
 # 최신 2개의 커널만을 남기고 나머지 삭제
-[root@localhost boot]# package-cleanup --oldkernels --count=2
+[root@localhost ~] package-cleanup --oldkernels --count=2
 ```
