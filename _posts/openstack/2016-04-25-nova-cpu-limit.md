@@ -39,12 +39,19 @@ openstack flavor set cpu.limit --property quota:cpu_quota=10000 --property quota
 ```
 
 CPU에 대한 메타데이터 속성은 다음과 같다.
-- cpu_quota: 각 vCPU 별 최대 bandwidth 제한으로 ms 단위로 1000 ~ 18446744073709551 사이의 값을 설정한다. -1로 설정하면 제한을 두지 않는다.
+
+- cpu_quota : 각 vCPU 별 최대 bandwidth 제한으로 ms 단위로 1000 ~ 18446744073709551 사이의 값을 설정한다. -1로 설정하면 제한을 두지 않는다.
+
 - cpu_period : (QEMU/LXC 용) 각 vCPU 별 최대 interval 제한으로 ms 단위로 1000 ~ 1000000 사이의 값을 설정한다. 0으로 설정하면 제한을 두지 않는다.
-- cpu_shares: Specifies the proportional weighted share for the domain. If this element is omitted, the service defaults to the OS provided defaults. There is no unit for the value; it is a relative measure based on the setting of other VMs. For example, a VM configured with value 2048 gets twice as much CPU time as a VM configured with value 1024.
+
+- cpu_shares : Specifies the proportional weighted share for the domain. If this element is omitted, the service defaults to the OS provided defaults. There is no unit for the value; it is a relative measure based on the setting of other VMs. For example, a VM configured with value 2048 gets twice as much CPU time as a VM configured with value 1024.
+
 - cpu_limit : (VMware Hypervisor용) 모든 vCPU의 최대 CPU 클럭 제한으로 Mhz 단위로 설정한다.
+
 - cpu_reservation : (VMware Hypervisor용) 모든 vCPU의 최소 CPU 클럭으로 Mhz 단위로 설정한다.
+
 - cpu_shares_level : (VMware Hypervisor용) 클럭 공유 레벨로 custom, high, normal, low 중 하나를 설정한다.
+
 - cpu_shares_share : (VMware Hypervisor용) cpu_shares_level을 custom으로 설정하였을 경우 Mhz 단위로 설정한다.
 
 

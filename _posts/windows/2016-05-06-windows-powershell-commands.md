@@ -40,7 +40,7 @@ Get-Job
 
 ```powershell
 Receive-Job -Id 아이디 -Keep
-Receive-Job -Name 잡이름-Keep
+Receive-Job -Name 잡이름 -Keep
 ```
 
 - 정지
@@ -68,7 +68,7 @@ Get-History | Export-Clixml history.xml
 - 가져오기
 
 ```powershell
-Import-Clixmlhistory.xml| Add-History
+Import-Clixml history.xml | Add-History
 ```
 
 
