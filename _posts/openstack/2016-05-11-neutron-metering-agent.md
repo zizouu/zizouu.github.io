@@ -52,13 +52,13 @@ iptables 룰에 rfp가 아닌 (DVR 환경이 아닐 때 사용되는) qg NIC을 
 
 > Controller, Compute 노드 모두 다음 과정들을 진행한다.
 
-1. ```neutron-metering-agent```를 설치한다.
+```neutron-metering-agent```를 설치한다.
 
 ```bash
 apt-get install neutron-metering-agent
 ```
 
-2. ```/etc/neutron/metering_agent.ini``` 파일을 다음과 같이 수정한다.
+```/etc/neutron/metering_agent.ini``` 파일을 다음과 같이 수정한다.
 
 ```ini
 [DEFAULT]
@@ -72,14 +72,14 @@ measure_interval = 60
 report_interval = 300
 ```
 
-3. ```/etc/neutron/neutron.conf``` 파일에서 미터링 서비스를 추가한다.
+```/etc/neutron/neutron.conf``` 파일에서 미터링 서비스를 추가한다.
 
 ```ini
 # service_plugins = ..., neutron.services.metering.metering_plugin.MeteringPlugin
 service_plugins = neutron.services.l3_router.l3_router_plugin.L3RouterPlugin,neutron.services.metering.metering_plugin.MeteringPlugin
 ```
 
-4. 미터링 소스 코드가 DVR 환경에 대해 고려되어있지 않으므로
+미터링 소스 코드가 DVR 환경에 대해 고려되어있지 않으므로
 Controller, Compute 노드 모두 다음과 같이 ```iptables_driver.py``` 코드를 수정한다.
 (패치 포맷 형식에 주의한다)
 
@@ -120,14 +120,14 @@ Controller, Compute 노드 모두 다음과 같이 ```iptables_driver.py``` 코�
          with IptablesManagerTransaction(rm.iptables_manager):
 ```
 
-5. Controller, Compute 노드 모두 관련 프로세스들을 재시작한다.
+Controller, Compute 노드 모두 관련 프로세스들을 재시작한다.
 
 ```bash
 service neutron-server restart  # Controller 노드만
 service neutron-metering-agent restart
 ```
 
-6. 모든 미터링 에이전트들이 정상 작동하는지 확인해본다.
+모든 미터링 에이전트들이 정상 작동하는지 확인해본다.
 
 ```bash
 root@controller001:~] neutron agent-list | grep meter
@@ -144,7 +144,7 @@ root@controller001:~] neutron agent-list | grep meter
 
 ## 미터링 설정
 
-1. 우선은 미터링을 설정할 Tenant ID를 확인한다.
+우선은 미터링을 설정할 Tenant ID를 확인한다.
 
 ```bash
 root@controller001:~] keystone tenant-list
@@ -155,7 +155,7 @@ root@controller001:~] keystone tenant-list
 +----------------------------------+--------------+---------+
 ```
 
-2. 디버깅을 위해 네트워크와 라우터 ID, qrouter NS에 rfp NIC이 있는지 확인해보는 것도 좋다.
+디버깅을 위해 네트워크와 라우터 ID, qrouter NS에 rfp NIC이 있는지 확인해보는 것도 좋다.
 
 ```bash
 root@controller001:~] neutron net-list
@@ -178,7 +178,7 @@ root@compute001:~] ip netns exec qrouter-6a3f89ce-de2e-47cf-a8d8-e9b3fecefc1a ip
     inet 115.71.3.121/32 brd 115.71.3.121 scope global rfp-6a3f89ce-d
 ```
 
-3. 미터링 레이블을 추가하고 여기에 모든 Egress 트래픽을 미터링하는 룰을 추가하고, iptables에 반영되었는지 확인해본다.
+미터링 레이블을 추가하고 여기에 모든 Egress 트래픽을 미터링하는 룰을 추가하고, iptables에 반영되었는지 확인해본다.
 
 ```bash
 root@controller001:~] neutron meter-label-create --tenant-id 3202300865884babb3b704fa06bc1d7f out
@@ -209,7 +209,7 @@ root@compute001:~] ip netns exec qrouter-6a3f89ce-de2e-47cf-a8d8-e9b3fecefc1a ip
 -A neutron-meter-r-a60dc325-e18 -o rfp-6a3f89ce-d -j neutron-meter-l-a60dc325-e18
 ```
 
-4. VM을 하나 생성하고 외부에서 Egrees 트래픽을 발생시킨 뒤, iptables에 통계가 쌓이는지 확인해본다.
+VM을 하나 생성하고 외부에서 Egrees 트래픽을 발생시킨 뒤, iptables에 통계가 쌓이는지 확인해본다.
 
 ```bash
 root@compute001:~] ip netns exec qrouter-6a3f89ce-de2e-47cf-a8d8-e9b3fecefc1a iptables -nv -L
@@ -218,7 +218,7 @@ Chain neutron-meter-r-a60dc325-e18 (1 references)
  133K  173M neutron-meter-l-a60dc325-e18  all  --  *      rfp-6a3f89ce-d  0.0.0.0/0            0.0.0.0/0
 ```
 
-5. 마지막으로 Ceilometer에서 샘플링 데이터와 통계를 확인해본다.
+마지막으로 Ceilometer에서 샘플링 데이터와 통계를 확인해본다.
 
 ```bash
 root@controller001:~] ceilometer resource-show a60dc325-e183-49d9-82be-c305a8031332
