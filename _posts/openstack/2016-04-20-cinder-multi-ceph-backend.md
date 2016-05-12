@@ -15,12 +15,14 @@ OpenStack 클러스터 내에 Ceph 클러스터를 여러개 물리거나, SSD/H
 이 문서에서는 여러개의 Ceph Pool을 Cinder에 물리고, Pool 별로 Volume Type을 생성하는 방법을 가이드한다.
 
 현재 환경은 다음과 같다.
+
 - Persistence용 Ceph Pool의 이름은 ```volumes``` 이며, 1개만 존재한다.
 - Cinder 또한 Persistence용으로 ```RBD-backend``` 백엔드 이름으로 ```volumes``` Pool을 물고 있다.
 - Cinder는 ```volumes``` 이름의 CephX 유저로 ```volumes``` Pool에 접근하고 있다.
 - ```volumes_ceph``` 이름의 Cinder 볼륨 타입이 ```RBD-backend``` 백엔드를 물고 있다.
 
 진행할 내용은 다음과 같다.
+
 - ```volumes-ssd``` 라는 Ceph Pool을 1개 더 만든다.
 - Cinder가 ```RBD-ssd``` 백엔드 이름으로 ```volumes-ssd``` Pool을 물게 한다.
 - Cinder가  ```volumes``` 이름의 CephX 유저로 ```volumes-ssd``` Pool에 접근할 수 있게 한다.

@@ -29,6 +29,7 @@ cd ${HOME}
 bzr branch lp:burg
 bzr pull
 ```
+
 ~/burg 디렉토리에 소스를 체크아웃 받는다.
 
 
@@ -44,6 +45,7 @@ cd bin_pc
 make
 make install
 ```
+
 ~/burg_pc 디렉토리에 팩키지 파일들이 생성된다.
 
 
@@ -62,6 +64,7 @@ cd ~/burg_pc/sbin
 cat /boot/grub/device.map --> burg-install 하기 전에 반드시 stage1이 설치될 디스크를 확인하라.
 ./burg-install "(hd0)"
 ```
+
 지정한 디스크의 MBR에 stage1이 설치되며 /boot/burg에 stage2가 설치된다.
 
 
@@ -72,6 +75,7 @@ cd /boot/burg
 cp /tmp/burg-theme-20100623.zip . --> 첨부된 burg-theme-20100623.zip 파일
 unzip burg-theme-20100623.zip
 ```
+
 /boot/burg/fonts 와 /boot/burg/themes 디렉토리가 생성되며 /boot/burgenv 파일을 오버라이드한다.
 
 
@@ -83,4 +87,5 @@ cp /tmp/burg ${HOME}/burg_pc/etc/default/  --> 첨부된 burg 파일
 cd ${HOME}/burg_pc/sbin
 ./burg-mkconfig -o /boot/burg/burg.cfg
 ```
+
 /boot/burg/burg.cfg 파일이 생성된다.

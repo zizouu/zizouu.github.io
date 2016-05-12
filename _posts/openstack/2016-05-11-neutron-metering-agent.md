@@ -25,6 +25,7 @@ Neutron 미터링이 어떻게 트래픽을 수집하는지 설명해본다.
 Neutron 미터링은 L3 패킷만을 대상으로 하며, 이는 곧 리눅스 Namespace 및 iptables와 연관이 있다.
 
 몇가지 Neutron에 대한 사전 지식으로는 (DVR 환경 기준)
+
 - VM에서 Public망으로 향하는 패킷은 qrouter NS를 거쳐 fip NS로 향한다.
 - 여기서 qrouter NS는 rfp-라우터ID 이름의 NIC으로 fip NS와 연결되어 있다.
 
@@ -47,6 +48,7 @@ iptables 룰에 rfp가 아닌 (DVR 환경이 아닐 때 사용되는) qg NIC을 
 ## 설치
 
 다음과 같은 환경에서 진행한다.
+
 - Fuel로 배포한 Liberty
 - DVR 환경
 

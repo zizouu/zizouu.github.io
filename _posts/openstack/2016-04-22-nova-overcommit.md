@@ -11,6 +11,7 @@ categories: openstack
 ## Overcommit 비율 기본값
 
 Nova의 기본 오버커밋 비율은 다음과 같다.
+
 - CPU -> 16:1
 - Memory -> 1.5:1
 - Disk -> 1:1
@@ -32,6 +33,7 @@ disk_allocation_ratio=1.0
 ```
 
 만약 Mirantis Fuel로 설치를 진행할 경우 기본값과 다르게 배포가 수행되는데 다음과 같다.
+
 - CPU -> 8:1
 - Memory -> 1:1
 - Disk -> 1:1
@@ -56,13 +58,13 @@ disk_allocation_ratio: '1.0'
 
 CPU의 경우는 물리 CPU의 스펙과 정책에 따라 다른데, 일반적으로 다음과 같이 계산한다.
 
-(Instance Count) = (Overcommit Ratio) * (Physical Cores) / (vCores per Instance)
-
-(Overcommit Ratio) = (Instance Count) / (Physical Cores) * (vCores per Instance)
+- (Instance Count) = (Overcommit Ratio) * (Physical Cores) / (vCores per Instance)
+- (Overcommit Ratio) = (Instance Count) / (Physical Cores) * (vCores per Instance)
 
 만약 인텔의 Hyper-Thread 기능을 사용할 경우, Mirantis에서는 총 코어 개수를 물리 코어 x 1.3 으로 계산할 것을 가이드한다.
 
 다음 환경에서 오버커밋 비율로 생성해낼 수 있는 인스턴스 개수는 다음과 같다.
+
 - 인텔 E5-2640 v3 2.6Ghz 8Core x 2way
 - Hyper-Thread 활성화
 - 인스턴스당 평균 4개의 코어를 사용

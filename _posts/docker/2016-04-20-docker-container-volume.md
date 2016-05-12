@@ -12,6 +12,7 @@ categories: docker
 이미지 내의 데이터는 경로(마운트 포인트)에 대한 속성을 가지고 있는데, 데이터 볼륨이 만들어지면서 데이터를 해당 경로로 복사한다.
 
 데이터 볼륨은 다음과 같은 특징을 가진다.
+
 - 데이터 볼륨은 다른 컨테이너와 공유하거나 재사용할 수 있다.
 - 이미지를 업데이트 할 때, 데이터 볼륨에 대한 변경 사항은 업데이트에 포함되지 않는다.
 - 컨테이너가 삭제되어도 해당 컨테이너에 물려있던 데이터 볼륨은 즉시 삭제되지 않고 GC에 의해 삭제된다.
@@ -29,6 +30,7 @@ docker run --name inter6-centos -it -v /inter6 centos /bin/bash
 - -v /inter6 : /inter6 마운트 포인트에 해당하는 데이터 볼륨 생성
 
 - Example
+
 ```bash
 [root@inter6-docker /]# docker run --name inter6-centos -it -v /inter6 centos /bin/bash
 [root@ccf7b1e8aa71 /]# ls -la
@@ -55,6 +57,7 @@ docker run --name inter6-centos -it -v /data/inter6-centos:/data:rw centos /bin/
 -v /data/inter6-centos:/data:rw : 호스트의 /data/inter6-centos 디렉토리를 /data에 해당하는 데이터 볼륨으로서 마운트. 또한 rw 옵션을 추가함으로서 컨테이너에서도 추가/수정이 가능
 
 - Example
+
 ```bash
 [root@inter6-docker inter6-centos]# cd /data/inter6-centos/
 [root@inter6-docker inter6-centos]# ll

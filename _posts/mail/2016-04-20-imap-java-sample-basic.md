@@ -9,18 +9,21 @@ categories: mail
 {:toc}
 
 Java로 IMAP 내의 메일을 리스팅하는 기본적인 코드.
-  - IMAP 서버와 커넥션을 맺고
-  - 폴더를 오픈한 다음
-  - 메세지를 검색해서
-  - 검색한 메세지들을 fetch 해온다.
+
+- IMAP 서버와 커넥션을 맺고
+- 폴더를 오픈한 다음
+- 메세지를 검색해서
+- 검색한 메세지들을 fetch 해온다.
 
 아래 코드는 아직 메일의 헤더와 내용은 가져오지 않았고, IMAP 서버가 인덱싱한 [Envelope](./IMAP%20Envelope.md)과 Flag 정보만 가져왔음에 주의하라.
 이 코드가 날리는 fetch 명령어는 다음과 같다.
 
-```A FETCH 1 (ENVELOPE INTERNALDATE RFC822.SIZE FLAGS)```
-
+```
+A FETCH 1 (ENVELOPE INTERNALDATE RFC822.SIZE FLAGS)
+```
 
 - pom.xml
+
 ```xml
 <dependency>
 	<groupId>com.sun.mail</groupId>
@@ -35,6 +38,7 @@ Java로 IMAP 내의 메일을 리스팅하는 기본적인 코드.
 ```
 
 - ImapBasicJob.java
+
 ```java
 package com.inter6.mail.job;
 
@@ -202,6 +206,7 @@ public class ImapBasicJob implements Job {
 ```
 
 - Output
+
 ```
 ...
 2014/12/04 22:43:56.154 main INFO : ImapBasicJob.travelFolder() - open folder - FLD:Trash TOT_MSGS:3 NEW_MSGS:0

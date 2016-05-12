@@ -12,6 +12,7 @@ categories: openstack
 
 Fuel은 HA를 지원하지 않기 때문에 배포 이후 백업을 해놓는 것을 추천한다.
 Fuel Master 노드에서만 백업을 수행하면 되며, 다운 타임없이 백업을 진행할 수 있다.
+
 > Docker 컨테이너들을 Commit하는 과정에서 컨테이너들이 정지되었다가 재개된다. 디스크 속도가 느리면 오래 걸릴 수 있으므로 주의한다.
 
 백업된 데이터는 다른 호스트로 SCP 등을 통해 전송시킨다.
@@ -21,6 +22,7 @@ Fuel Master 노드에서만 백업을 수행하면 되며, 다운 타임없이 �
 
 Docker 컨테이너를 Commit 한 뒤 이미지를 백업하고 복구하는 방식을 취하며,
 컨테이너 이미지에는 다음과 같은 정보들을 포함하고 있다.
+
 - Fuel DB
 - PXE로 인식한 노드들의 정보
 - 모든 Environment들의 설정
@@ -49,6 +51,7 @@ Filesystem            Type      Size  Used Avail Use% Mounted on
 ```
 
 다음 명령어로 간단히 백업을 수행할 수 있다.
+
 ```bash
 dockerctl backup
 ```
@@ -68,6 +71,7 @@ postgres_backup.sql : Fuel DB를 덤프한 sql 파일
 ```
 
 필요하다면 ```/var/log``` 디렉토리 또한 백업을 해준다.
+
 ```bash
 tar -czvf fuel-log.tar.gz /var/log
 ```
@@ -78,6 +82,7 @@ tar -czvf fuel-log.tar.gz /var/log
 ### 복구
 
 백업된 데이터를 복구시, 다음과 같은 제약사항이 존재한다.
+
 - 동일한 Fuel 버전의 백업 데이터만 복구할 수 있다.
 - 복구할 Fuel 노드는 이전과 동일한 설정으로 Fuel Setup을 수행했어야 한다.
   - Public 네트워크 설정은 달라도 되나 PXE 네트워크 설정은 반드시 같아야 한다.
@@ -85,6 +90,7 @@ tar -czvf fuel-log.tar.gz /var/log
 - /var 위치에 적어도 20GB 정도의 여유 용량은 있어야 한다.
 
 다음 명령어로 복구를 수행할 수 있다.
+
 ```bash
 #Usage: dockerctl restore {백업 파일의 절대 경로}
 dockerctl restore /root/fuel_backup.tar.lrz

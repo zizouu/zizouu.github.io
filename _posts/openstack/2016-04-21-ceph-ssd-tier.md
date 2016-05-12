@@ -257,7 +257,8 @@ root@storage001:~] ceph osd lspools
 
 ### Cinder Backend 설정
 
-다음 링크를 참고하여 ```volumes```와 ```volumes_ssd``` Pool을 Cinder에 물리고, 볼륨 타입을 생성한다. [Ceph Multi-Pool and Cinder Multi-Backend - inter6 wiki](https://inter6.github.io/2016/04/20/cinder-multi-ceph-backend/)
+다음 링크를 참고하여 ```volumes```와 ```volumes_ssd``` Pool을 Cinder에 물리고, 볼륨 타입을 생성한다.
+[Ceph Multi-Pool and Cinder Multi-Backend - inter6 wiki](https://inter6.github.io/2016/04/20/cinder-multi-ceph-backend/)
 
 이 후 해당 볼륨 타입으로 볼륨을 생성한 뒤 ```ceph df```로 실제 용량을 먹어들어가는지 확인한다.
 

@@ -15,6 +15,7 @@ Fuel은 6.0/Juno부터 플러그인 기능을 지원한다.
 Fuel이 가지고있는 노드들의 정보와 배포 환경 등을 플러그인에서도 사용할 수 있으므로, 플러그인에서 별도로 노드 정보/환경들을 Detection 할 필요가 없다.
 
 Fuel 플러그인을 사용함에 따른 이점은 다음과 같다.
+
 - 매뉴얼로 진행되는 복잡한 배포 수행 절차를 자동화한다.
 - Human Error를 줄인다.
 - 배포 실패와 불안정함, 보안 문제를 줄인다.
@@ -28,6 +29,7 @@ Fuel 플러그인을 사용함에 따른 이점은 다음과 같다.
 플러그인 개발시 주의할 점은 모든 코드는 멱등성(idempotent)을 지켜야한다.
 
 또한 다음과 같은 제한을 가지고 있다.
+
 - OpenStack 코어 기능을 핸들하는 플러그인은 Environment가 배포된 이후에는 설치는 가능해도 Environment Task에 추가되지 않으므로 작동하지 않는다.
 이 경우에는 Environment를 새로 구성하여야 한다.
 - Application 레벨의 플러그인은 배포 이후에도 Environment Task에 추가되어 플러그인 코드들이 수행될 수 있다.
@@ -35,6 +37,7 @@ Fuel 플러그인을 사용함에 따른 이점은 다음과 같다.
 - SDN 관련 플러그인을 개발할 경우, Fuel UI에 새로운 네트워크 옵션을 만들 수 없다는 점에 주의.
 
 배포 이후에 설치/작동할 수 있는 플러그인은 Application 레벨의 플러그인으로 다음과 같은 특징을 갖는다.
+
 - 새로운 App을 배포
 - 새로운 노드에 App을 설치
 - 기존에 작동하고있는 서비스나 App을 건드리지 않는다.
@@ -44,6 +47,7 @@ Fuel 플러그인을 사용함에 따른 이점은 다음과 같다.
 다음은 현재 GitHub에 있는 Core 레벨 플러그인과 Application 레벨 플러그인 목록이다. (일부)
 
 ### Core Level Fuel Plugins
+
 - [fuel-plugin-nsxv](https://github.com/openstack/fuel-plugin-nsxv) : Fuel plugin for NSX-V integration
 - [fuel-plugin-external-emc](https://github.com/openstack/fuel-plugin-external-emc) : Fuel plugin for Cinder with EMC integration
 - [fuel-plugin-vmware-dvs](https://github.com/openstack/fuel-plugin-vmware-dvs) : Fuel plugin for VMware DVS integration
@@ -61,6 +65,7 @@ Fuel 플러그인을 사용함에 따른 이점은 다음과 같다.
 - [fuel-plugin-glance-nfs](https://github.com/openstack/fuel-plugin-glance-nfs) : Fuel plugin for nfs as storage backend for images (glance)
 
 ### Application Level Fuel Plugins
+
 - [fuel-plugin-lma-collector](https://github.com/openstack/fuel-plugin-lma-collector) : Fuel plugin to collect Logging Monitoring and Alerting metrics
 - [fuel-plugin-lma-infrastructure-alerting](https://github.com/openstack/fuel-plugin-lma-infrastructure-alerting) : The LMA Infrastructure Alerting plugin installs necessary tools to provide the alerting functionality of the LMA toolchain
 - [fuel-plugin-elasticsearch-kibana](https://github.com/openstack/fuel-plugin-elasticsearch-kibana) : Integrate Elasticsearch and Kibana with Fuel
@@ -85,6 +90,7 @@ python setup.py develop
 ### 프로젝트 생성
 
 FPB로 프로젝트 디렉토리를 생성한다.
+
 ```bash
 # Usage: fpb --create {fuel_plugin_name}
 fpb --create fuel-plugin-example
@@ -92,6 +98,7 @@ fpb --create fuel-plugin-example
 
 최신 FPB로 생성하였기 때문에 기본적으로 Fuel 9.0/Mitaka에서 작동하게끔 만들어진다.
 Fuel 8.0/Liberty를 사용한다면 ```metadata.yaml``` 파일의 내용을 다음과 같이 변경한다.
+
 ```yaml
 fuel_version: ['8.0']
 releases:
@@ -103,6 +110,7 @@ releases:
 ```
 
 이 후 생성된 디렉토리를 Repository로 업로드한다. 다음은 Git Repo로 Push하는 절차이다.
+
 ```bash
 cd fuel-plugin-example
 git init
@@ -118,6 +126,7 @@ git push -u origin master
 # Usage: fpb --debug --build {fuel_plugin_name}
 fpb --debug --build fuel-plugin-example
 ```
+
 프로젝트 디렉토리 내에 플러그인 RPM이 생성되며, 해당 RPM을 Fuel-master 노드에 설치하여 플러그인을 사용할 수 있다.
 
 
@@ -147,6 +156,7 @@ root@fuel-plugin-develop:~/fuel-plugin-example# tree
 Task는 다음과 같은 속성들을 담고 있다.
 
 - Example
+
 ```yaml
 - id: fuel-plugin-etckeeper-install	# Task의 이름
   type: puppet	# Task가 수행하는 일의 종류
@@ -169,6 +179,7 @@ Task는 다음과 같은 속성들을 담고 있다.
 사용자로부터 설정값을 받을 필요가 있을 경우, Fuel Web에서 설정값을 받을수있는 UI 컴포넌트를 정의할 수 있다.
 
 - Example
+
 ```yaml
 attributes:
   vcs:
@@ -196,6 +207,7 @@ Neutron의 LBaaS v1 기능을 활성화하는 플러그인을 예제로 개발�
 주의할 점은 이 예제에서는 Environment가 배포된 상황에서 LBaaS를 활성화하기 위해, Core 레벨이 아닌 Application 레벨의 플러그인으로 개발하고자 한다.
 
 ### 준비물
+
 - Ubuntu 14.04가 설치되어있는 환경
 - Fuel 8.0/Liberty Environment가 배포되어있는 환경
 - Git Repository
@@ -204,6 +216,7 @@ Neutron의 LBaaS v1 기능을 활성화하는 플러그인을 예제로 개발�
 ### 프로젝트 생성
 
 FPB로 neutron-lbaas-v1 라는 이름의 프로젝트를 생성한다. 생성 이후 Git Repo로 Push 하였다.
+
 ```bash
 fpb --create neutron-lbaas-v1
 cd neutron-lbaas-v1
@@ -215,6 +228,7 @@ git push -u origin master
 ```
 
 플러그인의 정보를 담고있는 ```metadata.yaml``` 파일을 다음과 같이 수정하였다.
+
 ```yaml
 # Plugin name
 name: neutron-lbaas-v1
@@ -254,6 +268,7 @@ package_version: '4.0.0'
 
 Fuel Web UI에 LBaaS를 활성화할지에 대한 체크박스를 표시하기위해 ```environment_config.yaml```을 수정하였다.
 또한 Neutron을 사용했을 때만 플러그인을 사용할 수 있도록 restrictions도 추가하였다.
+
 ```yaml
 attributes:
   metadata:
@@ -272,16 +287,19 @@ attributes:
 ```
 
 현재 시점에서 빌드하고 설치를 수행해본다.
+
 ```bash
 fpb --debug --build .
 fuel plugins --install neutron-lbaas-v1-1.0-1.0.0-1.noarch.rpm --force
 ```
+
 ```environment_config.yaml```에서 ```network``` 그룹으로 지정하였기 때문에 네트워크 탭의 Other 메뉴에서 설정 UI가 표시되는 것을 확인할 수 있다.
 
 
 ### Task 생성
 
 LBaaSv1를 활성화하기 위해서는 크게 4가지 스텝을 진행해야한다.
+
 1. (모든 Controller 노드) LBaaS Agent 설치
 2. (모든 Controller 노드) LBaaS 설정
 3. (모든 Controller 노드) Horizon의 LB 패널 활성화
@@ -289,6 +307,7 @@ LBaaSv1를 활성화하기 위해서는 크게 4가지 스텝을 진행해야한
 
 궃이 나눌 필요는 없어보이므로 1~4번을 모두 1개의 Task로 취급해도 무방하다.
 다만 Neutron과 Horizon이 이미 설치되어 있어야 하기에 post_deployment_start와 post_deployment_end 사이에 Task를 추가하도록 하자.
+
 ```yaml
 # These tasks will be merged into deployment graph. Here you
 # can specify new tasks for any roles, even built-in ones.
@@ -305,9 +324,12 @@ LBaaSv1를 활성화하기 위해서는 크게 4가지 스텝을 진행해야한
 ```
 
 마지막으로 deployment_scripts 디렉토리에 LBaaS를 활성화하는 neutron_lbaas_v1.pp를 생성한다.
-```puppet
 
+```puppet
+TODO
 ```
 
 
 ### Task 실행
+
+TODO

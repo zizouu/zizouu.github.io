@@ -16,6 +16,7 @@ Apache MINA is a network application framework which helps users develop high pe
 It provides an abstract ·event-driven · asynchronous API over various transports such as TCP/IP and UDP/IP via Java NIO.
 
 Apache MINA is often called:
+
 - NIO framework · library,
 - client · server framework · library, or
 - a networking · socket library.
@@ -46,11 +47,13 @@ Lets take a deeper dive into the details now. The following image shows a bit mo
 (The image is from Emmanuel Lécharny presentation MINA in real life (ApacheCon EU 2009))
 
 Broadly, MINA based applications are divided into 3 layers
+
 - I/O Service - Performs actual I/O
 - I/O Filter Chain - Filters/Transforms bytes into desired Data Structures and vice-versa
 - I/O Handler - Here resides the actual business logic
 
 So, in order to create a MINA based Application, you have to :
+
 - Create an I/O service - Choose from already available Services (*Acceptor) or create your own
 - Create a Filter Chain - Choose from already existing Filters or create a custom Filter for transforming request/response
 - Create an I/O Handler - Write business logic, on handling different messages

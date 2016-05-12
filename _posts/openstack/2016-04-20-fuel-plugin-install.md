@@ -11,6 +11,7 @@ categories: openstack
 [Mirantis - Fuel Plugin Catalog](https://www.mirantis.com/products/openstack-drivers-and-plugins/fuel-plugins/)
 
 아래 예제는 다음 플러그인을 설치한다.
+
 - elasticsearch_kibana-0.8-0.8.0-1.noarch.rpm
 - influxdb_grafana-0.8-0.8.0-1.noarch.rpm
 - lma_collector-0.8-0.8.0-1.noarch.rpm

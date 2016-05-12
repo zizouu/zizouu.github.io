@@ -49,6 +49,7 @@ curl -L 'http://127.0.0.1:2376/version'
 > 모든 호스트를 동일하게 설치 & 설정 (중간에 myid 부분은 노드마다 달라야 한다)
 
 - Java 설치
+
 ```bash
 # 개인적으로 Oracle jdk-8u60-linux-x64 를 사용한다.
 tar -xzf jdk-8u60-linux-x64.tar.gz
@@ -58,6 +59,7 @@ ln -s /opt/jdk1.8.0_60 /opt/jdk8
 ```
 
 - Zookeeper 다운로드 및 설정
+
 ```bash
 wget http://apache.mirror.cdnetworks.com/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
 tar -xzf zookeeper-3.4.6.tar.gz
@@ -115,6 +117,7 @@ chmod 700 my-zkServer.sh
 ```
 
 - Zookeeper 실행
+
 ```bash
 ./my-zkServer.sh start
 

@@ -88,6 +88,7 @@ DOCKER_CERT_PATH=/etc/docker
 Docker가 사용할 최상위 디렉토리를 지정할 수 있다. 기본값은 /var/lib/docker 이다.
 
 - Example
+
 ```
 OPTIONS='--selinux-enabled -g /data/docker'
 ```
@@ -95,6 +96,7 @@ OPTIONS='--selinux-enabled -g /data/docker'
 ### -H (--host)
 
 데몬 모드로 실행할 때 소켓 경로를 설정한다. 다음과 같은 형식을 사용할 수 있다.
+
 ```
 tcp://<IP 주소 또는 도메인>:<포트 번호>
 unix:///<소켓 경로>
@@ -102,6 +104,7 @@ fd://* 또는 fd://socketfd
 ```
 
 - Example
+
 ```
 OPTIONS='--selinux-enabled -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock'
 ```

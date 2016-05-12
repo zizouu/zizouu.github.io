@@ -31,6 +31,7 @@ docker commit -m "test" -a "inter6" 90db9983763a docker.io/centos:test
 ```
 
 - Example
+
 ```bash
 [root@inter6-docker-test ~]# docker run --name centos -it docker.io/centos /bin/bash
 [root@90db9983763a /]# touch inter6.test
@@ -66,6 +67,7 @@ docker rmi docker.io/centos:test
 docker pull registry:latest
 docker run --name registry -d -p 15500:5000 -e STORAGE_PATH=/registry -v /data/registry:/registry:rw registry
 ```
+
 - -e STORAGE_PATH=/registry : 컨테이너 내의 데이터 볼륨 경로
 
 
@@ -93,6 +95,7 @@ docker push 0.0.0.0:15500/docker-test
 ```
 
 - Example
+
 ```bash
 [root@inter6-docker-test ~]# docker run --name centos -it docker.io/centos /bin/bash
 [root@90db9983763a /]# touch inter6.test

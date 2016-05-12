@@ -88,6 +88,7 @@ docker run -i -t centos /bin/bash
 - -i : make an interactive connection by grabbing the standard in (STDIN) of the container
 
 - Example
+
 ```bash
 [root@inter6-docker ~]# docker run -i -t centos /bin/bash
 [root@b0a1df7bf64a /]# ls
@@ -107,6 +108,7 @@ tmpfs                                 tmpfs  1.9G     0  1.9G   0% /proc/kcore
 ```
 
 - Example
+
 ```bash
 [root@inter6-docker ~]# docker run -i -t centos /bin/bash
 [root@a241a2c0984a /]# touch /tmp/test | ll /tmp/test
@@ -133,6 +135,7 @@ docker run -d centos /bin/sh -c "while true; do echo Hello World; sleep 5; done"
 docker ps -a로 모든 컨테이너들을 확인할 수 있고, docker logs $NAMES로 NAMES에 해당하는 컨테이너의 표준 출력을 볼 수 있다. docker stop $NAMES로 정지시킨다. 정지된 컨테이너는 docker start $NAMES로 다시 살리거나 docker run으로 새로운 컨테이너를 실행시킬 수도 있다. 컨테이너를 완전히 날릴려면 stop 이후 docker rm $NAMES을 하면 된다.
 
 - Example
+
 ```bash
 [root@inter6-docker ~]# docker run -d centos /bin/sh -c "while true; do echo Hello World; sleep 5; done"
 202baf9508fe04319d141683ab8ff057182eccda8db4b85f0693aac77dcc31d0

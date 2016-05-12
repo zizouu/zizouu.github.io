@@ -188,6 +188,7 @@ tag:tag0,option:dns-server,172.31.0.2,172.31.0.4,172.31.0.3
 이는 가장 처음 보았던 Routed network 에서와 같다.
 
 여기서 의문이 들 수 있는데 enable_isolated_metadata 를 활성화했을 때
+
 - qrouter NS에서는 GW 설정에 상관없이 항상 메타데이터 서비스가 작동하며
 - qdhcp NS에서는 GW를 설정했을 경우 메타데이터 서비스가 올라오지 않을 수 있다.
 

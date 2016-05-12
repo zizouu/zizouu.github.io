@@ -33,6 +33,7 @@ cinder qos-create Low-speed consumer="front-end" total_iops_sec=1000 total_bytes
 또는 Horizon의 ```시스템 > 볼륨 > 볼륨 타입 > QoS 사양```에서 UI를 통해 생성할 수 있다.
 
 consumer에 사용할 수 있는 값은 다음과 같다.
+
 - front-end : Hypervisor 에서 수행
 - back-end : Storage Sub-System 에서 수행
 - both : 2군데 모두
@@ -41,6 +42,7 @@ consumer에 사용할 수 있는 값은 다음과 같다.
 
 
 또한 여기서는 total_iops_sec와 total_bytes_sec로만 제한을 걸었는데, 다음 키들을 추가로 사용할 수 있다.
+
 - total_bytes_sec: the total allowed bandwidth for the guest per second
 - read_bytes_sec: sequential read limitation
 - write_bytes_sec: sequential write limitation

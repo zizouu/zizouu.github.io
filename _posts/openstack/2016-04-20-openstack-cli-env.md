@@ -11,6 +11,7 @@ categories: openstack
 ## 문제 현상
 
 Controller 노드 등에서 SSH로 접속 후 CLI 명령어를 입력하였으나 다음과 같은 오류 발생.
+
 ```bash
 root@controller:~# nova list
 ERROR (CommandError): You must provide a username or user id via --os-username, --os-user-id, env[OS_USERNAME] or env[OS_USER_ID]

@@ -17,6 +17,7 @@ categories: docker
 싱글 컨테이너이지만 개인적으로 docker-compose를 사용하는 것이 편리하기 때문에 compose로 실행시킨다.
 
 - docker-compose.yml
+
 ```bash
 registry:
   image: registry:2
@@ -40,6 +41,7 @@ registry:
   - REGISTRY_AUTH_HTPASSWD_PATH: /certs/htpasswd - 유저 및 패스워드가 기록된 htpasswd 파일
 
 - Example
+
 ```bash
 [root@daou-inter6-2 certs]# pwd
 /data/docker/registry/certs

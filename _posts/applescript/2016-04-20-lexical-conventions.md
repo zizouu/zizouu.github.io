@@ -146,6 +146,7 @@ OS X 10.5(애플스크립트 2.0)부터 Unicode를 사용한다.
 ## The Continuation Character
 
 한 라인을 여러 라인으로 쓰고 싶다면 ¬ (Option + L)을 사용하면 된다.
+
 ```applescript
 display dialog "This is just a test." buttons {"Great", "OK"} ¬
 default button "OK" giving up after 3
@@ -169,6 +170,7 @@ Global Constants in AppleScript 참고
 ```applescript
 {1, 7, "Beethoven", 4.5}
 ```
+
 과 같이 표현하며 list 클래스로 취급할 수 있다.
 
 ### Number
@@ -178,6 +180,7 @@ Global Constants in AppleScript 참고
 3.1415
 9.9999999999E+10
 ```
+
 real, integer, number 클래스로 취급할 수 있다.
 
 ### Record
@@ -185,6 +188,7 @@ real, integer, number 클래스로 취급할 수 있다.
 ```applescript
 {product:"pen", price:2.34}
 ```
+
 Key:Value를 갖는 레코드들의 집합이다.
 
 ### Text
@@ -192,4 +196,5 @@ Key:Value를 갖는 레코드들의 집합이다.
 ```applescript
 "A basic string."
 ```
+
 애플스크립트의 문자열은 ""를 사용하며 text 클래스로 취급할 수 있다.

@@ -25,6 +25,7 @@ Timestamp         S0     S1     E      O      P     YGC     YGCT    FGC    FGCT 
 ```
 
 Parameters
+
 - -t : 타임스탬프를 찍고
 - -h10 : 10 라인마다 헤더를 찍으며
 - 2390 : PID가 2390인 프로세스에 대해
@@ -32,6 +33,7 @@ Parameters
 - 100 : 100개까지 출력
 
 Columns
+
 - S0 : Survivor 영역 0 의 사용율 (현재의 용량에 대한 퍼센티지)
 - S1 : Survivor 영역 1 의 사용율 (현재의 용량에 대한 퍼센티지)
 - E : Eden 영역의 사용율 (현재의 용량에 대한 퍼센티지)

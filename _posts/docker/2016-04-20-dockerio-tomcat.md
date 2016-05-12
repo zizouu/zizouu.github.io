@@ -27,6 +27,7 @@ docker run --name inter6-tomcat -it --rm -p 8080:8080 tomcat
 ```
 
 기본적으로 다음과 같은 환경변수를 가지고있다. 물론 컨테이너 내에서의 환경변수이다.
+
 ```bash
 CATALINA_BASE:   /usr/local/tomcat
 CATALINA_HOME:   /usr/local/tomcat

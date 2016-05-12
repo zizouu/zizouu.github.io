@@ -60,11 +60,13 @@ htpasswd를 사용하여 마찬가지로 docker-registry.htpasswd 파일명으�
 만약 htpasswd가 없다면 yum install httpd-tools로 설치한다.
 
 처음으로 htpasswd 파일을 만든다면
+
 ```bash
 htpasswd -c docker-registry.htpasswd user1
 ```
 
 이후에 htpasswd 파일에 유저를 추가한다면
+
 ```bash
 htpasswd docker-registry.htpasswd user2
 ```
