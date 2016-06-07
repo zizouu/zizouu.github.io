@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ceilometer vCPU 사용량 추가"
+title: "Ceilometer vCPU 사용량 미터링"
 date: 2016-05-17
 categories: openstack
 ---
