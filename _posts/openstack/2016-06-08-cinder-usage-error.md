@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ceilometer에 volume.exists 이벤트가 쌓이지 않는 현상"
+title: "cinder-volume-usage-audit 오류 현상"
 date: 2016-06-08
 categories: openstack
 ---
