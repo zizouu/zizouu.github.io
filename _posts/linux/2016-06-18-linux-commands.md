@@ -31,3 +31,9 @@ openvpn --config ~/path/to/client.ovpn
 yum install yum-plugin-downloadonly
 yum install --downloadonly --downloaddir=디렉토리 팩키지명
 ```
+
+### 새로운 디스크 스캔
+
+```bash
+ls /sys/class/scsi_host/ | while read host; do echo "- - -" > /sys/class/scsi_host/$host/scan; done
+```
