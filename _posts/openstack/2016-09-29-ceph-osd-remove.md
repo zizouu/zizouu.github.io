@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ceph OSD 삭제"
-date: 2016-04-20
+date: 2016-09-29
 categories: openstack
 ---
 
@@ -40,6 +40,13 @@ marked out osd.1.
 ```bash
 [root@ceph0 ceph] service ceph-osd@1 stop
 Redirecting to /bin/systemctl stop  ceph-osd@1.service
+```
+
+시스템에 따라 다음 명령어일 수도 있다.
+
+```bash
+[root@ceph0 ceph] stop ceph-osd id=1
+ceph-osd start/running
 ```
 
 
