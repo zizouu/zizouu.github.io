@@ -10,24 +10,24 @@ categories: linux
 
 ## Rule Save
 
-```bash
+```
 iptables-save > /etc/sysconfig/iptables
 ```
 
 ## Rule Reset
 
-```bash
+```
 iptables -P INPUT ACCEPT
 iptables -P FORWARD ACCEPT
 iptables -P OUTPUT ACCEPT
 iptables -t nat -F
+iptables -t mangle -F
 iptables -F
 iptables -X
-...
 ```
 
 ## Rule Load
 
-```bash
+```
 iptables-restore < /etc/sysconfig/iptables
 ```
