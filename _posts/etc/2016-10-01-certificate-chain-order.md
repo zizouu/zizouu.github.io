@@ -2,7 +2,7 @@
 layout: post
 title: "인증서 체인 순서"
 date: 2016-10-01
-categories: linux
+categories: etc
 ---
 
 * content
