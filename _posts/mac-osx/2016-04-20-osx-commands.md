@@ -29,3 +29,9 @@ DB 손상으로 인해 파인더에서 '다음으로 열기'가 작동하지 않
 ```bash
 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -seed -r -f -v -domain local -domain user -domain system
 ```
+
+### 블루투스 음질 향상
+
+```bash
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" 58
+```
