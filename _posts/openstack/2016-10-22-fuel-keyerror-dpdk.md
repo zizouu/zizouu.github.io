@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Fuel KeyError: u'dpdk' 이슈"
-date: 2016-10-21
+date: 2016-10-22
 categories: openstack
 ---
 
