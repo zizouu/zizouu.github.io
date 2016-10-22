@@ -8,8 +8,6 @@ categories: openstack
 * content
 {:toc}
 
-# Keystone OpenID SSO
-
 ## 구성
 
 - Gluu Server v2.4.4
