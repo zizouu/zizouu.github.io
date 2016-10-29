@@ -33,7 +33,7 @@ Preparing VM 설정 후, 각 OS별 문서에 따라 설치를 진행한다.
 - Client Secret: 접근 패스워드
 - Application Type: Web
 - Pre-Authorization: Disabled
-- Client URI: https://{{ Keystone External Domain/IP }}:5000/v3/auth/OS-FEDERATION/websso/oidc/redirect
+- Client URI: https://<Keystone External Domain/IP>:5000/v3/auth/OS-FEDERATION/websso/oidc/redirect
 - Subject Type: public
 - Authentication method for the Token Endpoint: client_secret_basic
 - Persist Client Authorizations: True
@@ -41,7 +41,7 @@ Preparing VM 설정 후, 각 OS별 문서에 따라 설치를 진행한다.
 
 하단 버튼을 클릭하여 다음 속성들을 추가한다.
 
-- Add Redirect Login URI: https://{{ Keystone External Domain/IP }}:5000/v3/auth/OS-FEDERATION/websso/oidc/redirect
+- Add Redirect Login URI: https://<Keystone External Domain/IP>:5000/v3/auth/OS-FEDERATION/websso/oidc/redirect
 - Add Scope: email, openid, profile
 - Add Response Type: id_token
 
@@ -67,7 +67,7 @@ remote_id_attribute = HTTP_OIDC_ISS
 
 [federation]
 remote_id_attribute = HTTP_OIDC_ISS
-trusted_dashboard = https://{{ Horizon External Domain/IP }}/horizon/auth/websso/
+trusted_dashboard = https://<Horizon External Domain/IP>/horizon/auth/websso/
 sso_callback_template = /etc/keystone/sso_callback_template.html
 ```
 
@@ -92,8 +92,8 @@ apt-get install libjansson4
 ```/etc/apache2/sites-available/05-keystone_wsgi_main.conf```에 다음 설정들을 추가한다.
 
 ```
-<VirtualHost {{ Keystone Internal IP }}:5000>
-    ServerName https://{{ Keystone External IP }}:5000
+<VirtualHost <Keystone Internal IP>:5000>
+    ServerName https://<Keystone External IP>:5000
     
     ...
     
@@ -102,12 +102,12 @@ apt-get install libjansson4
     OIDCClaimPrefix "OIDC-"
     OIDCResponseType "id_token"
     OIDCScope "openid email profile"
-    OIDCProviderMetadataURL https://{{ Gluu Domain }}/.well-known/openid-configuration
-    OIDCClientID "{{ 추가한 OpenID 클라이언트의 iNum }}"
-    OIDCClientSecret "{{ 클라이언트의 Secret }}"
+    OIDCProviderMetadataURL https://<Gluu Domain>/.well-known/openid-configuration
+    OIDCClientID "<추가한 OpenID 클라이언트의 iNum>"
+    OIDCClientSecret "<클라이언트의 Secret>"
     OIDCProviderTokenEndpointAuth client_secret_basic
     OIDCCryptoPassphrase openstack
-    OIDCRedirectURI https://{{ Keystone External Domain/IP }}:5000/v3/auth/OS-FEDERATION/websso/oidc/redirect
+    OIDCRedirectURI https://<Keystone External Domain/IP>:5000/v3/auth/OS-FEDERATION/websso/oidc/redirect
     OIDCSSLValidateServer Off
     OIDCOAuthSSLValidateServer Off
 
@@ -132,7 +132,7 @@ apt-get install libjansson4
 ```/etc/openstack-dashboard/local_settings.py```에 다음 설정들을 추가한다.
 
 ```
-OPENSTACK_KEYSTONE_URL = "https://{{ Keystone External Domain/IP }}:5000/v3"
+OPENSTACK_KEYSTONE_URL = "https://<Keystone External Domain/IP>:5000/v3"
 
 WEBSSO_ENABLED = True
 
@@ -168,7 +168,7 @@ openstack role add _member_ --group indigo_group --project indigo
     "local": [
       {
         "group": {
-          "id": "{{ 생성한 그룹 ID }}"
+          "id": "<생성한 그룹 ID>"
         },
         "user": {
           "domain": {
@@ -186,7 +186,7 @@ openstack role add _member_ --group indigo_group --project indigo
       {
         "type": "HTTP_OIDC_ISS",
         "any_one_of": [
-          "https://{{ Gluu Domain }}"
+          "https://<Gluu Domain>"
         ]
       }
     ]
@@ -198,7 +198,7 @@ openstack role add _member_ --group indigo_group --project indigo
 
 ```
 openstack mapping create indigo_mapping --rules indigo_mapping.json
-openstack identity provider create indigo-dc --remote-id https://{{ Gluu Domain }}
+openstack identity provider create indigo-dc --remote-id https://<Gluu Domain>
 openstack federation protocol create oidc --identity-provider indigo-dc --mapping indigo_mapping
 ```
 
