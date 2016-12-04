@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mirantis OpenStack Monitoring"
+title: "OpenStack Monitoring"
 date: 2016-12-04
 categories: openstack
 ---
@@ -87,8 +87,8 @@ Neutron은 Nova와 같은 다른 OpenStack 서비스가 관리하는 vNIC 간의
 | neutron-ns-metadata-proxy | RPC | controller | amqp, db | active/passive |
 | neutron-openvswitch-agent | RPC | 모든 노드 | amqp, ovs | active/passive |
 | dnsmasq | UDP 67 | controller | | active/passive |
-| ovsdb-server | | 모든 노드  | not available |
-| ovs-vswitchd | | 모든 노드 | not available |
+| ovsdb-server | | 모든 노드 | | not available |
+| ovs-vswitchd | | 모든 노드 | | not available |
 
 neutron-dhcp-agent는 VM의 DHCP 요청을 처리하기 위해 dnsmasq을 사용한다. DHCP를 사용하는 경우, 테넌트 네트워크 당 하나 이상의 dnsmasq 프로세스가 있어야한다.
 
@@ -121,7 +121,7 @@ Glance는 VM 이미지 또는 인스턴스 스냅샷을 업로드할 수 있는 
 | Metrics | Source |
 |:--|:--|
 | Active 이미지 개수 | API 폴링: ```/v2/images``` |
-| Active 이미지의 총 용량 | API 폴링: ```/v2/images?visibility=public&status=active |
+| Active 이미지의 총 용량 | API 폴링: ```/v2/images?visibility=public&status=active``` |
 | API 오류 | 로그 또는 HAProxy 로그: 모든 HTTP 500 오류 |
 
 
