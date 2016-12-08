@@ -15,22 +15,7 @@ permalink: /about/
 - [inter6@naver.com](inter6@naver.com)
 
 
-## Career
-
-### [DAOU Tech, Inc.](http://www.daou.com)
-
-- 2013\. 01\. ~ cur\.
-- S/W R&D
-- 주임 연구원
-
-#### Projects
-
-- DAOU Cloud IaaS
-- [DAOU Office](http://daouoffice.com)
-- [Terrace Mail Solutions](http://terracemail.co.kr)
-- Microsoft Exchange 3rd-party
-
-## Domain
+## Skil
 
 - OpenStack Platform
   - 운영 및 트러블슈팅
