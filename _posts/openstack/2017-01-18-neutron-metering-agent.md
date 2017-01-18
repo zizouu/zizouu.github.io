@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Neutron Metering Agent"
-date: 2016-05-11
+date: 2017-01-18
 categories: openstack
 ---
 
@@ -49,18 +49,18 @@ iptables 룰에 rfp가 아닌 (DVR 환경이 아닐 때 사용되는) qg NIC을 
 
 다음과 같은 환경에서 진행한다.
 
-- Fuel로 배포한 Liberty
+- Fuel로 배포한 Mitaka
 - DVR 환경
 
-> Controller, Compute 노드 모두 다음 과정들을 진행한다.
+> DVR을 사용하고 Outbound 트래픽에만 관심이 있기 때문에 Compute 노드들에만 미터링 에이전트를 설치한다.
 
-```neutron-metering-agent```를 설치한다.
+Step 1. (Compute 노드) ```neutron-metering-agent```를 설치한다.
 
 ```bash
 apt-get install neutron-metering-agent
 ```
 
-```/etc/neutron/metering_agent.ini``` 파일을 다음과 같이 수정한다.
+Step 2. (Compute 노드) ```/etc/neutron/metering_agent.ini``` 파일을 다음과 같이 수정한다.
 
 ```ini
 [DEFAULT]
@@ -74,15 +74,14 @@ measure_interval = 60
 report_interval = 300
 ```
 
-```/etc/neutron/neutron.conf``` 파일에서 미터링 서비스를 추가한다.
+Step 3. (Controller, Compute 노드) ```/etc/neutron/neutron.conf``` 파일에서 미터링 서비스를 추가한다.
 
 ```ini
 # service_plugins = ..., neutron.services.metering.metering_plugin.MeteringPlugin
 service_plugins = neutron.services.l3_router.l3_router_plugin.L3RouterPlugin,neutron.services.metering.metering_plugin.MeteringPlugin
 ```
 
-미터링 소스 코드가 DVR 환경에 대해 고려되어있지 않으므로
-Controller, Compute 노드 모두 다음과 같이 ```iptables_driver.py``` 코드를 수정한다.
+Step 4. (Compute 노드) 미터링 소스 코드가 DVR 환경에 대해 고려되어있지 않으므로, 다음과 같이 ```iptables_driver.py``` 코드를 수정한다.
 (패치 포맷 형식에 주의한다)
 
 파일 경로 : ```/usr/lib/python2.7/dist-packages/neutron/services/metering/drivers/iptables/iptables_driver.py```
@@ -122,22 +121,81 @@ Controller, Compute 노드 모두 다음과 같이 ```iptables_driver.py``` 코�
          with IptablesManagerTransaction(rm.iptables_manager):
 ```
 
-Controller, Compute 노드 모두 관련 프로세스들을 재시작한다.
+Step 5. (Controller 노드) Mitaka에서는 Neutron 서버가 미터링 설정과 관련한 요청 메세지를
+Controller 노드에 있는 미터링 에이전트에만 보내는 문제가 있다.
+
+Neutron은 각 vRouter가 어떤 L3 에이전트에 바인드되어있는지 DB로 관리하고 있는데 (routerl3agentbindings 테이블),
+미터링 설정시 해당 vRouter의 L3 에이전트가 바인드되어있는 노드의 미터링 에이전트에 요청 큐를 보낸다.
+
+그러나 Mitaka에서는 vRouter 생성시, dvr_snat 역할을 하는 컨트롤러 노드의 L3 에이전트들만 바인드를 등록하고 있다.
+이로인해 Compute 노드로는 미터링 설정 요청이 가지 않는다.
+어떤 이유로 인해 dvr_snat 에이전트들만 등록하는 것으로 변경되었는지 추적이 필요하나,
+우선은 vRouterL3 에이전트가 있는 모든 노드들에 미터링 설정 요청을 보내게 코드를 수정한다.
+
+파일 경로 : ```/usr/lib/python2.7/dist-packages/neutron/api/rpc/agentnotifiers/metering_rpc_agent_api.py```
+
+```
+@@ -42,22 +42,18 @@
+             service_constants.L3_ROUTER_NAT)
+
+         l3_routers = {}
+-        state = agentschedulers_db.get_admin_state_up_filter()
+         for router in routers:
+-            l3_agents = plugin.get_l3_agents_hosting_routers(
+-                adminContext, [router['id']],
+-                admin_state_up=state,
+-                active=True)
+-            for l3_agent in l3_agents:
++            hosts = plugin.get_hosts_to_notify(adminContext, router['id'])
++            for host in hosts:
+                 LOG.debug('Notify metering agent at %(topic)s.%(host)s '
+                           'the message %(method)s',
+                           {'topic': self.topic,
+-                           'host': l3_agent.host,
++                           'host': host,
+                            'method': method})
+
+-                l3_router = l3_routers.get(l3_agent.host, [])
++                l3_router = l3_routers.get(host, [])
+                 l3_router.append(router)
+-                l3_routers[l3_agent.host] = l3_router
++                l3_routers[host] = l3_router
+
+         for host, routers in six.iteritems(l3_routers):
+             cctxt = self.client.prepare(server=host)
+```
+
+파일 경로 : ```/usr/lib/python2.7/dist-packages/neutron/db/metering/metering_rpc.py```
+
+```
+@@ -47,8 +47,7 @@
+                 LOG.error(_LE('Unable to find agent %s.'), host)
+                 return
+
+-            routers = l3_plugin.list_routers_on_l3_agent(context, agents[0].id)
+-            router_ids = [router['id'] for router in routers['routers']]
++            router_ids = l3_plugin.list_router_ids_on_host(context, host)
+             if not router_ids:
+                 return
+```
+
+Step 6. 관련 프로세스들을 재시작한다.
 
 ```bash
-service neutron-server restart  # Controller 노드만
+# Controller 노드
+service neutron-server restart
+
+# Compute 노드
 service neutron-metering-agent restart
 ```
 
-모든 미터링 에이전트들이 정상 작동하는지 확인해본다.
+Step 7. 모든 미터링 에이전트들이 정상 작동하는지 확인해본다.
 
 ```bash
 root@controller001:~] neutron agent-list | grep meter
 +--------------------------------------+--------------------+---------------------------------+-------+----------------+---------------------------+
 | id                                   | agent_type         | host                            | alive | admin_state_up | binary                    |
 +--------------------------------------+--------------------+---------------------------------+-------+----------------+---------------------------+
-| d7e364ff-fb48-4cea-a643-e89712765bab | Metering agent     | controller001.terracetech.co.kr | :-)   | True           | neutron-metering-agent    |
-| d981bf27-8fbb-4050-b507-04d2c426d314 | Metering agent     | controller002.terracetech.co.kr | :-)   | True           | neutron-metering-agent    |
 | 98c6ce21-0def-4a5f-96c3-f2dfc7202f49 | Metering agent     | compute001.terracetech.co.kr    | :-)   | True           | neutron-metering-agent    |
 | 582b3a87-e3a6-4d95-9006-9d5c7c14f160 | Metering agent     | compute002.terracetech.co.kr    | :-)   | True           | neutron-metering-agent    |
 +--------------------------------------+--------------------+---------------------------------+-------+----------------+---------------------------+
