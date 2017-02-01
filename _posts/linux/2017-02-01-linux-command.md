@@ -9,6 +9,7 @@ categories: linux
 {:toc}
 
 - 폴더찾기
+
 ```
 ...
 find / -name '*post*'
