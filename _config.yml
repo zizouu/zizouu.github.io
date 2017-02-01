@@ -1,7 +1,7 @@
 # Site settings
-title: A F T E R - I M A G E
-email: inter6@naver.com
-description: inter6-wiki
+title: DEVELOP ART
+email: thecarlos@naver.com
+description: zizouu-wiki
 # > # this means to ignore newlines until "baseurl:"
 #   Write an awesome description for your new site here. You can edit this
 #   line in _config.yml. It will appear in your document head meta (for
@@ -10,12 +10,12 @@ description: inter6-wiki
 # baseurl: "" # the subpath of your site, e.g. /blog/
 # url: "http://yourdomain.com" # the base hostname & protocol for your site
 # twitter_username: jekyllrb
-github_username: inter6
+github_username: zizouu
 permalink: /:year/:month/:day/:title/
 # this is the url root of the view source link on the footer page.
-viewsourceroot: https://github.com/inter6/inter6.github.io/blob/master/
+viewsourceroot: https://github.com/inter6/zizouu.github.io/blob/master/
 # this is the url root of the create page link on the footer page.
-newsourceroot: https://github.com/inter6/inter6.github.io/new/master
+newsourceroot: https://github.com/inter6/zizouu.github.io/new/master
 #########################################
 # for duoshuo.com commenting system, uncomment following line if you do not want to include duoshuo.com. 
 #duoshuo_shortname: lixizhi
