@@ -8,6 +8,8 @@ categories: etc
 * content
 {:toc}
 
+## https://github.com/EBvi/dev-matrix 참고
+
 ## 전산학 이해
 
 ###1. 자료구조
