@@ -9,25 +9,17 @@ categories: git
 {:toc}
 
 ## 저장소 강제 초기화
-
-- .git폴더 삭제
-- git init 수행
-
+.git폴더 삭제<br>
+git init 수행
 ```
 
 git add *
 git commit -m 'initial commit'
 git remote add origin <url>
-
-```
-
-- 강제 Push
-
-```
-
 git push --force --set-upstream origin master
 
 ```
+***
 
 ## 원격저장소 확인
 
@@ -36,6 +28,7 @@ git push --force --set-upstream origin master
 git remote -v
 
 ```
+***
 
 ## 원격저장소 수정
 
@@ -44,11 +37,13 @@ git remote -v
 git remote set-url origin <git-url> 
 
 ```
+***
 
 ## 브랜치삭제
 
 ```
-...
+
 git branch -d <branch>
-...
+
 ```
+***
