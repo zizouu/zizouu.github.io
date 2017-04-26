@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "자주 사용하는 Linux 명령어"
+title: "Linux 명령어 모음"
 date: 2017-02-01
 categories: linux
 ---
@@ -8,10 +8,18 @@ categories: linux
 * content
 {:toc}
 
-- 폴더찾기
+## Find
+```
+find / -name '*post*'
+```
+## Yum
+- yum은 자동으로 dependency관리를 해준다.
+- 일반 설치
 
 ```
-...
-find / -name '*post*'
-...
+yum install <package-name>
+```
+- 로컬에 rpm파일을 yum으로 설치
+```
+yum localinstall <rpm-path>
 ```
