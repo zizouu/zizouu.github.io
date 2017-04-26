@@ -14,6 +14,8 @@ categories: linux
 find / -name '*post*'
 
 ```
+***
+
 ## Yum
 yum은 자동으로 dependency관리를 해준다.
 
@@ -27,8 +29,11 @@ yum install <package-name>
 ***
 
 * 로컬에 rpm파일을 yum으로 설치
+
 ```
+
 yum localinstall <rpm-path>
+
 ```
 ***
 
