@@ -1,24 +1,12 @@
 ---
 layout: post
-title: "django"
+title: "django mongoDB"
 date: 2017-04-28
-categories: python
+categories: django
 ---
 
 * content
 {:toc}
-
-## django setting
-* 가상환경에서 python 명령어를 통해 django프로젝트의 모듈을 사용하려면 환경변수를 잡아줘야한다.
-* manage.py를 통해 실행하면 manage.py 내부에 setting이 되어 있음
-
-```
-
-set DJANGO_SETTINGS_MODULE=<app-name>.settings      // 윈도 cmd
-export DJANGO_SETTINGS_MODULE=<app-name>.settings   // 리눅스 shell
-
-```
-***
 
 ## django mongoDB 연동
 * django-mongodb-engine을 사용
