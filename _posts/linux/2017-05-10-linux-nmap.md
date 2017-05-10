@@ -8,10 +8,10 @@ categories: linux
 * content
 {:toc}
 
-## nmap
+## 1. nmap
 - 로컬 혹은 외부 장비의 포트를 스캔한다.
 
-## CentOS 설치 
+## 2. CentOS 설치 
 
 ```
 
@@ -20,14 +20,34 @@ yum install nmap    // yum으로 설치
 ```
 ***
 
-## 사용법
+## 3. 사용법
 - ip를 다양하게 범위조절 가능
 - 172.16.9.0/24 -> 이런식으로 할 경우 앞의 24bit는 고정하고 뒤의 모든 범위를 스캔하겠다는 뜻. 172.16.9.0 ~ 255까지
 - 172.16.9.0-255 -> 위와 동일한 결과
 
 ```
 
-nmap <option> <ip>
+nmap <scan-type> <option> <ip>
 
 ```
 ***
+
+## 4. 옵션
+- Scan Type
+
+```
+
+nmap -sT <ip>   // TCP포트를 스캔
+nmap -sU <ip>   // UDP포트를 스캔
+nmap -sP <ip>   // RPC포트를 스캔
+
+```
+***
+
+- Option
+
+```
+
+nmap -O <ip>    // 시스템의 운영체제를 추정한다.
+
+```
