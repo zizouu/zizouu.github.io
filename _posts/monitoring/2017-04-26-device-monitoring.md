@@ -17,12 +17,13 @@ Grafana로 graphical 하게 확인<br>
 - 각 플러그인을 통해 어떤 Data를 수집할지 설정
 - network 플러그인을 통해 수집한 Data를 전달
 - **Config**  
-    * 기본 - /etc/collectd.conf 파일
+    - 기본 - /etc/collectd.conf 파일
      
 ## 2. Influx
-* Create Database를 통해 DB를 만들고 Collectd의 network와 바운딩 해 놓으면 알아서 data가 쌓인다.
-* **Config**
-    * 기본 - /etc/influxdb/influxdb.conf 파일
-    * network plugin - Server에 ip, port작성
+- Create Database를 통해 DB를 만들고 Collectd의 network와 바운딩 해 놓으면 알아서 data가 쌓인다.
+- **Config**
+    - 기본 - /etc/influxdb/influxdb.conf 파일
+    - network plugin - Server에 ip, port작성
     
 ## 3. Grafana
+- 데이터를 시각화해서 보여주는 툴
