@@ -21,29 +21,22 @@ git push --force --set-upstream origin master
 ```
 ***
 
-## 원격저장소 확인
+## remote
 
-```git
+```
 
-git remote -v
+git remote -v                       // 원격저장소 확인
+git remote set-url origin <git-url> // 원격저장소 수정
 
 ```
 ***
 
-## 원격저장소 수정
-
-```git
-
-git remote set-url origin <git-url> 
+## branch
 
 ```
-***
 
-## 브랜치삭제
-
-```git
-
-git branch -d <branch>
+git branch -d <branch>  // 브랜치 삭제
+git branch -r           // 브랜치 목록
 
 ```
 ***
