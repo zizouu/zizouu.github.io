@@ -21,3 +21,5 @@ categories: linux
 ## 3. 단점
 - 크기를 동적으로 사용할 수 없어 디스크 공간을 고정으로 차지한다.
 - 하드디스크의 소모율을 높일 수 있다.
+
+![swap-memory](/media/linux/swap-partition.jpg)
