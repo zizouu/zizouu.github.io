@@ -48,3 +48,14 @@ rpm -qa <package>       // 설치된 rpm찾기
 rpm -qi <package>       // 패키지 정보
 ```
 ***
+
+## wc
+- 단어나 파일개수를 구할 때 사용
+```
+wc -l || --lines            // new line count
+wc -w || --word             // word count
+wc -m || --chars            // character count
+wc -L || --max-line-lenth   // longest line length
+wc -c || --bytes            // byte count
+find <path/*> -type f | wc -l // file count 
+```
