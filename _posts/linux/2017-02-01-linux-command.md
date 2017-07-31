@@ -59,3 +59,4 @@ wc -L || --max-line-lenth   // longest line length
 wc -c || --bytes            // byte count
 find <path/*> -type f | wc -l // file count 
 ```
+***
