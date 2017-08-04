@@ -9,14 +9,14 @@ categories: postgresql
 {:toc}
 
 ## Create User
-```
-create user {user-name} with password '{password}';
+```postgresql
+create user "name" with password 'pw';
 ```
 ***
 
 ## Create Database
-```
-create database {db-name};
+```postgresql
+create database "db-name";
 ```
 ***
 
