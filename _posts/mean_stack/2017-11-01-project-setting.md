@@ -13,6 +13,7 @@ categories: mean_stack
 - node.js 설치
 - angular-cli 설치 (angular2 구축용)
     - -g옵션을 통해 global로 설치해야 어디서나 사용가능
+    
 ```
 npm install -g @angular/cli
 ```
@@ -20,6 +21,7 @@ npm install -g @angular/cli
 
 - new project > static web > angular cli > finish (angular2 프로젝트가 생성됨)
 - express설치
+
 ```
 npm install --save express body-parser
 ```
@@ -28,6 +30,7 @@ npm install --save express body-parser
 - express를 사용하기 위해 프로젝트 루트폴더에 server.js 생성, server폴더 생성
 - server폴더에 서버 부분 코드를 작성할 예정이다. (express를 사용해서)
 - server.js
+
 ```ecmascript 6
 // config (자신의 환경에 맞게 URI 및 포트 넘버 수정)
 var env = process.env.NODE_ENV || 'development';
@@ -76,6 +79,7 @@ const server = http.createServer(app);
 
 // 모든 네트워크 인터페이스에 설정된 포트 부여
 server.listen(port, () => console.log(`Server running on localhost:${port}`));
+
 ```
 ***
 
@@ -86,6 +90,7 @@ server.listen(port, () => console.log(`Server running on localhost:${port}`));
 - server폴더 아래 routes폴더 생성
 - routes폴더에 api.js생성
 - api.js
+
 ```ecmascript 6
 const express = require('express');
 const router = express.Router();
@@ -100,6 +105,7 @@ module.exports = router;
 ***
 
 - 이제 angular를 빌드하고 서버를 띄운다
+
 ```
 ng build
 node server.js
