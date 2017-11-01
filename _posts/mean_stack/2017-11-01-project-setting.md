@@ -31,7 +31,7 @@ npm install --save express body-parser
 - server폴더에 서버 부분 코드를 작성할 예정이다. (express를 사용해서)
 - server.js
 
-```ecmascript 6
+``` ecmascript 6
 // config (자신의 환경에 맞게 URI 및 포트 넘버 수정)
 var env = process.env.NODE_ENV || 'development';
 
@@ -91,7 +91,7 @@ server.listen(port, () => console.log(`Server running on localhost:${port}`));
 - routes폴더에 api.js생성
 - api.js
 
-```ecmascript 6
+``` ecmascript 6
 const express = require('express');
 const router = express.Router();
 
