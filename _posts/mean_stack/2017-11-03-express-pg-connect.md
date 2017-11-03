@@ -8,7 +8,7 @@ categories: mean_stack
 * content
 {:toc}
 
-### Express.js와 Postgresql연결
+### Express.js와 Postgresql연결 (mongoDB 사용하려다가 기존의 진행하던 프로젝트가 pg로 되어있어 변경)
 > [출처 : Express.js 공식페이지](http://expressjs.com/ko/guide/database-integration.html)
 ```javascript
 const pgp = require('pg-promise')({});
