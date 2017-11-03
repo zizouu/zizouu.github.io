@@ -10,7 +10,7 @@ categories: mean_stack
 
 ### 윈도우에서 intellij 기반 프로젝트 구축
 
-> [출처 : https://blooom.co.kr/%EC%95%B5%EA%B7%A4%EB%9F%AC2-mean-%EC%8A%A4%ED%83%9D-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/]
+> [출처 : https://blooom.co.kr](https://blooom.co.kr/%EC%95%B5%EA%B7%A4%EB%9F%AC2-mean-%EC%8A%A4%ED%83%9D-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/)
 
 - node.js 설치
 - angular-cli 설치 (angular2 구축용)
